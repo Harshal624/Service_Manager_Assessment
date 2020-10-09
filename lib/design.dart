@@ -37,7 +37,7 @@ class _DesignState extends State<Design> {
                 height: size.height * 0.8,
                 child: Column(
                   children: [
-                    
+
                   ],
                 )
               ),
@@ -58,7 +58,7 @@ class _DesignState extends State<Design> {
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   Icon(
-                    Icons.notifications,
+                    Icons.notifications_none,
                     color: Colors.blue,
                   ),
                 ],
@@ -74,14 +74,14 @@ class _DesignState extends State<Design> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Icon(
-                Icons.account_balance,
+                Icons.account_circle,
                 size: 35,
                 color: Colors.white,
               ),
-              Icon(Icons.add, size: 35, color: Colors.white),
+              Icon(Icons.train, size: 35, color: Colors.white),
               SizedBox.shrink(),
-              Icon(Icons.star, size: 35, color: Colors.white),
-              Icon(Icons.access_time, size: 35, color: Colors.white)
+              Icon(Icons.chat, size: 35, color: Colors.white),
+              Icon(Icons.archive, size: 35, color: Colors.white)
             ],
           ),
         ),
