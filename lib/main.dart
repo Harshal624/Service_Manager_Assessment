@@ -12,7 +12,7 @@ class DesignTest extends StatelessWidget {
     return MaterialApp(
       title: 'Design Test',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(),
       home: Design(),
     );
   }

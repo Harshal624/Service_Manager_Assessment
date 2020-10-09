@@ -35,3 +35,8 @@ flutter:
       fonts:
         - asset: fonts/Roboto.ttf
 
+    - family: Norwester
+      fonts:
+        - asset: fonts/norwester.ttf
+
+
