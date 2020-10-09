@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'components/innercontainer.dart';
+
 class Design extends StatefulWidget {
   @override
   _DesignState createState() => _DesignState();
@@ -63,10 +65,10 @@ class _DesignState extends State<Design> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[200],
         child: Icon(
           Icons.search,
-          color: Colors.lightBlue[400],
+          color: Hexcolor("#FF8080C5"),
           size: 30,
         ),
       ),
@@ -143,12 +145,21 @@ class _Custom_appbar extends StatelessWidget {
 }
 
 class _radioButton extends StatefulWidget {
+  double heightRadio;
+  double widthRadio;
+
+  _radioButton(this.heightRadio, this.widthRadio);
+
   @override
-  _radioButtonState createState() => _radioButtonState();
+  _radioButtonState createState() => _radioButtonState(heightRadio, widthRadio);
 }
 
 class _radioButtonState extends State<_radioButton> {
   int selectedRadio;
+  double heightRadio;
+  double widthRadio;
+
+  _radioButtonState(this.heightRadio, this.widthRadio);
 
   setSelectedRadio(int val) {
     setState(() {
@@ -164,78 +175,97 @@ class _radioButtonState extends State<_radioButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Radio(
-            value: 1,
-            groupValue: selectedRadio,
-            activeColor: Colors.red,
-            onChanged: (val) {
-              setSelectedRadio(val);
-            },
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Text("Search set number"),
-        ),
-        Expanded(
-          flex: 1,
-          child: Radio(
-            value: 2,
-            groupValue: selectedRadio,
-            activeColor: Colors.red,
-            onChanged: (val) {
-              setSelectedRadio(val);
-            },
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Text("Search set by train number"),
-        ),
-      ],
-    );
+    return Container(
+        height: heightRadio * 0.08,
+        width: widthRadio * 0.98,
+        child: Row(
+          children: [
+            Radio(
+              value: 1,
+              groupValue: selectedRadio,
+              activeColor: Colors.black,
+              onChanged: (val) {
+                setSelectedRadio(val);
+              },
+            ),
+            Text(
+              "Search Set Number",
+              maxLines: 2,
+              style: TextStyle(
+                  fontSize: 10,
+                  fontFamily: 'Roboto.ttf',
+                  fontWeight: FontWeight.bold),
+            ),
+            Radio(
+              value: 2,
+              groupValue: selectedRadio,
+              activeColor: Colors.black,
+              onChanged: (val) {
+                setSelectedRadio(val);
+              },
+            ),
+            Text(
+              "Search Set By Train Number",
+              maxLines: 2,
+              style: TextStyle(
+                  fontSize: 10,
+                  fontFamily: 'Roboto.ttf',
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ));
   }
 }
 
 class _MainContainer extends StatelessWidget {
   double height;
   double width;
+
   @override
   Widget build(BuildContext context) {
-    final innerContHeight = height*0.4;
-    final innerContWidth = width*0.9;
+    final String innerContColor = "#3B505FE1";
     return Container(
       child: Column(
         children: [
-          SizedBox(height: 10,),
-          _radioButton(),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
+          _radioButton(height, width),
+          SizedBox(
+            height: 10,
+          ),
           ClipRRect(
-            borderRadius: BorderRadius.horizontal(left: Radius.circular(30),right: Radius.circular(30)),
-            child: Container(width: width * 0.8, height: height * 0.08, color: Colors.grey,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                //TODO Change this layout
-                SizedBox(width:10 ,),
-                Text("SET NO 232"),
-                Icon(Icons.search,color: Colors.red,)
-              ],
-            ),
+            borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(30), right: Radius.circular(30)),
+            child: Container(
+              width: width * 0.8,
+              height: height * 0.08,
+              color: Hexcolor("#70011627"),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  //TODO Change this layout
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text("SET NO 232"),
+                  Icon(
+                    Icons.search,
+                    color: Colors.red,
+                  )
+                ],
+              ),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Container(
-            width: innerContWidth,
-            height: innerContHeight,
-            color: Colors.grey[300],
-            child: _innerContainer(innerContHeight,innerContWidth),
+            width: width * 0.85,
+            height: height * 0.4,
+            color: Hexcolor(innerContColor),
+            child: innerContainer(),
           )
         ],
       ),
@@ -248,16 +278,4 @@ class _MainContainer extends StatelessWidget {
   }
 }
 
-class _innerContainer extends StatelessWidget {
-  double height,width;
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-
-  _innerContainer(height,width){
-    height = this.height;
-    width = this.width;
-  }
-}
 

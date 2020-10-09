@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   hexcolor: ^1.0.4
+  dotted_line: ^2.0.1
   flutter:
     sdk: flutter
 
@@ -26,9 +27,9 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+ # assets:
+   # - assets/raster.png
+
 
   fonts:
     - family: Roboto
