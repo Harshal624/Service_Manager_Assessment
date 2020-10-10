@@ -11,6 +11,9 @@ environment:
 dependencies:
   hexcolor: ^1.0.4
   dotted_line: ^2.0.1
+  geolocator: ^6.0.0+4
+  fluttertoast: ^7.1.1
+  geocoder: ^0.2.1
   flutter:
     sdk: flutter
 
@@ -27,8 +30,10 @@ flutter:
 
   uses-material-design: true
 
- # assets:
-   # - assets/raster.png
+  assets:
+    - assets/Raster.png
+    - assets/notification.png
+    - assets/archive.png
 
 
   fonts:

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'SizeConfig.dart';
 import 'components/innercontainer.dart';
 
 class Design extends StatefulWidget {
@@ -15,14 +16,14 @@ class _DesignState extends State<Design> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
     return Scaffold(
       body: Stack(
         children: [
           Container(
             color: Hexcolor(_appBarColor),
-            width: size.width,
-            height: size.height,
+            width: SizeConfig.screenWidth,
+            height: SizeConfig.screenHeight,
             child: Row(
               children: [
                 Icon(
@@ -39,9 +40,9 @@ class _DesignState extends State<Design> {
                   topLeft: Radius.circular(40), topRight: Radius.circular(40)),
               child: Container(
                 color: Colors.white,
-                width: size.width,
-                height: size.height * 0.76,
-                child: _MainContainer(size.height, size.width),
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHeight * 0.76,
+                child: _MainContainer(),
               ),
             ),
           ),
@@ -49,7 +50,7 @@ class _DesignState extends State<Design> {
               top: 0,
               left: 0,
               right: 0,
-              height: size.height * 0.15,
+              height: SizeConfig.screenHeight * 0.15,
               child: SafeArea(
                 child: _Custom_appbar(),
               ))
@@ -59,7 +60,7 @@ class _DesignState extends State<Design> {
         shape: CircularNotchedRectangle(),
         color: Hexcolor(_bottomNavColor),
         child: Container(
-          height: size.height * 0.085,
+          height: SizeConfig.screenHeight * 0.085,
           child: _Bottomnav_icons(),
         ),
       ),
@@ -69,7 +70,7 @@ class _DesignState extends State<Design> {
         child: Icon(
           Icons.search,
           color: Hexcolor("#FF8080C5"),
-          size: 30,
+          size: 40,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -91,7 +92,13 @@ class _Bottomnav_icons extends StatelessWidget {
         Icon(Icons.train, size: 35, color: Colors.white),
         SizedBox.shrink(),
         Icon(Icons.chat, size: 35, color: Colors.white),
-        Icon(Icons.archive, size: 35, color: Colors.white)
+        SizedBox(
+            width: 35,
+            height: 35,
+            child: Image.asset(
+              'assets/archive.png',
+              color: Colors.white,
+            ))
       ],
     );
   }
@@ -105,18 +112,16 @@ class _Custom_appbar extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(
                 Icons.apps,
                 color: Colors.white,
                 size: 30,
               ),
-              Icon(
-                Icons.train,
-                color: Colors.white,
-                size: 30,
-              ),
+              SizedBox(width: 50,
+                  height: 50,
+                  child: Image.asset('assets/Raster.png', color: Colors.white)),
               Text(
                 "Service Manager",
                 style: TextStyle(
@@ -145,21 +150,15 @@ class _Custom_appbar extends StatelessWidget {
 }
 
 class _radioButton extends StatefulWidget {
-  double heightRadio;
-  double widthRadio;
-
-  _radioButton(this.heightRadio, this.widthRadio);
+  final double heightRadio = 0;
+  final double widthRadio = 0;
 
   @override
-  _radioButtonState createState() => _radioButtonState(heightRadio, widthRadio);
+  _radioButtonState createState() => _radioButtonState();
 }
 
 class _radioButtonState extends State<_radioButton> {
   int selectedRadio;
-  double heightRadio;
-  double widthRadio;
-
-  _radioButtonState(this.heightRadio, this.widthRadio);
 
   setSelectedRadio(int val) {
     setState(() {
@@ -175,10 +174,12 @@ class _radioButtonState extends State<_radioButton> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-        height: heightRadio * 0.08,
-        width: widthRadio * 0.98,
+        height: SizeConfig.screenHeight * 0.08,
+        width: SizeConfig.screenWidth * 0.98,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Radio(
               value: 1,
@@ -192,7 +193,7 @@ class _radioButtonState extends State<_radioButton> {
               "Search Set Number",
               maxLines: 2,
               style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 12,
                   fontFamily: 'Roboto.ttf',
                   fontWeight: FontWeight.bold),
             ),
@@ -208,7 +209,7 @@ class _radioButtonState extends State<_radioButton> {
               "Search Set By Train Number",
               maxLines: 2,
               style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 12,
                   fontFamily: 'Roboto.ttf',
                   fontWeight: FontWeight.bold),
             ),
@@ -218,11 +219,9 @@ class _radioButtonState extends State<_radioButton> {
 }
 
 class _MainContainer extends StatelessWidget {
-  double height;
-  double width;
-
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final String innerContColor = "#3B505FE1";
     return Container(
       child: Column(
@@ -230,7 +229,7 @@ class _MainContainer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          _radioButton(height, width),
+          _radioButton(),
           SizedBox(
             height: 10,
           ),
@@ -238,18 +237,16 @@ class _MainContainer extends StatelessWidget {
             borderRadius: BorderRadius.horizontal(
                 left: Radius.circular(30), right: Radius.circular(30)),
             child: Container(
-              width: width * 0.8,
-              height: height * 0.08,
+              width: SizeConfig.screenWidth * 0.75,
+              height: SizeConfig.screenHeight * 0.08,
               color: Hexcolor("#70011627"),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  //TODO Change this layout
-                  SizedBox(
-                    width: 10,
-                  ),
+
                   Text("SET NO 232"),
+                  SizedBox(width: 20,),
                   Icon(
                     Icons.search,
                     color: Colors.red,
@@ -261,21 +258,17 @@ class _MainContainer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Container(
-            width: width * 0.85,
-            height: height * 0.4,
-            color: Hexcolor(innerContColor),
-            child: innerContainer(),
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: Container(
+              width: SizeConfig.screenWidth * 0.85,
+              height: SizeConfig.screenHeight * 0.4,
+              color: Hexcolor(innerContColor),
+              child: InnerContainer(),
+            ),
           )
         ],
       ),
     );
   }
-
-  _MainContainer(height, width) {
-    this.height = height;
-    this.width = width;
-  }
 }
-
-
