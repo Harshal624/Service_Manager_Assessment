@@ -1,6 +1,9 @@
+import 'package:design_test/location/showlocation.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 
 class InnerContainer extends StatelessWidget {
   @override
@@ -70,7 +73,7 @@ class InnerContainer extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(3))),
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: () => _showLocation(context),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -400,6 +403,10 @@ class _ColumnLayout extends StatelessWidget {
     );
   }
 
-  _ColumnLayout(
-      {this.title, this.status1, this.status2, this.status3, this.time1, this.time2, this.time3});
+  _ColumnLayout({this.title, this.status1, this.status2, this.status3, this.time1, this.time2, this.time3});
+}
+
+void _showLocation(context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ShowLocation()));
 }
