@@ -2,8 +2,6 @@ import 'package:design_test/location/showlocation.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 
 class InnerContainer extends StatelessWidget {
   @override
@@ -159,8 +157,8 @@ class _TopLayout extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: ClipRRect(
-                          borderRadius:
-                          BorderRadius.horizontal(right: Radius.circular(10)),
+                          borderRadius: BorderRadius.horizontal(
+                              right: Radius.circular(10)),
                           child: _ColumnList1(
                             sign: "NDH",
                             time: "3:12",
@@ -185,9 +183,9 @@ class _TopLayout extends StatelessWidget {
                   color: Colors.grey[200],
                   child: Center(
                       child: Text(
-                        "232",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )),
+                    "232",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
                 ))),
       ],
     );
@@ -285,7 +283,8 @@ class _BottomLayout extends StatelessWidget {
                       status3: "ASO",
                       time1: "13:56",
                       time2: "17:41",
-                      time3: "19:43",),
+                      time3: "19:43",
+                    ),
                   ),
                   _DottedLines(),
                   Expanded(
@@ -297,7 +296,8 @@ class _BottomLayout extends StatelessWidget {
                       status3: "KYN",
                       time1: "15:24",
                       time2: "19:23",
-                      time3: "20:20",),
+                      time3: "20:20",
+                    ),
                   ),
                   _DottedLines(),
                 ],
@@ -403,9 +403,16 @@ class _ColumnLayout extends StatelessWidget {
     );
   }
 
-  _ColumnLayout({this.title, this.status1, this.status2, this.status3, this.time1, this.time2, this.time3});
+  _ColumnLayout({this.title,
+    this.status1,
+    this.status2,
+    this.status3,
+    this.time1,
+    this.time2,
+    this.time3});
 }
 
+//Getlocation onclick event
 void _showLocation(context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => ShowLocation()));

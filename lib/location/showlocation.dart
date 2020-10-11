@@ -29,7 +29,6 @@ class _ShowLocationState extends State<ShowLocation> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getUserLocation();
   }
@@ -37,12 +36,11 @@ class _ShowLocationState extends State<ShowLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Current Location"),
-      ),
-      body: Center(
-        child: Text(lat ?? 'Loading...'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Current Location"),
+        ),
+        body: Center(
+          child: Text(lat ?? 'Loading...'),
+        ));
   }
 }
