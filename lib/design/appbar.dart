@@ -10,6 +10,9 @@ class Custom_appbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        SizedBox(
+          width: 10,
+        ),
         Expanded(
           flex: 3,
           child: Row(

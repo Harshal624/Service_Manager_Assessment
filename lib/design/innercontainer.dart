@@ -44,18 +44,26 @@ class InnerContainer extends StatelessWidget {
                       child: RaisedButton(
                         onPressed: () {},
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 25,
+                            Expanded(
+                              flex: 1,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 25,
+                              ),
                             ),
-                            Text("Add To Roaster",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto.ttf')),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text("Add To Roaster",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                      fontFamily: 'Roboto.ttf')),
+                            ),
                           ],
                         ),
                         color: Colors.green,
@@ -75,16 +83,24 @@ class InnerContainer extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SizedBox(
-                                width: 30,
-                                height: 25,
-                                child: Image.asset('assets/notification.png')),
-                            Text(
-                              "Set Reminder",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontFamily: 'Roboto.ttf'),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  width: 30,
+                                  height: 25,
+                                  child: Image.asset(
+                                      'assets/notification.png')),
+                            ),
+                            SizedBox(width: 20,),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                "Set Reminder",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                    fontFamily: 'Roboto.ttf'),
+                              ),
                             ),
                           ],
                         ),

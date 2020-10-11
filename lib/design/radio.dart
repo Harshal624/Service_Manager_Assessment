@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import '../ui/SizeConfig.dart';
 
 class RadioButton extends StatefulWidget {
-  final double heightRadio = 0;
-  final double widthRadio = 0;
-
   @override
   _RadioButtonState createState() => _RadioButtonState();
 }
 
 class _RadioButtonState extends State<RadioButton> {
   int selectedRadio;
+  final double _radioButtonFontSize = 15;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
+  }
 
   setSelectedRadio(int val) {
     setState(() {
@@ -20,53 +24,64 @@ class _RadioButtonState extends State<RadioButton> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    selectedRadio = 0;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final double _radioBFontSize = 12;
     SizeConfig().init(context);
     return Container(
         height: SizeConfig.screenHeight * 0.08,
-        width: SizeConfig.screenWidth * 0.98,
+        width: SizeConfig.screenWidth,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Radio(
-              value: 1,
-              groupValue: selectedRadio,
-              activeColor: Colors.black,
-              onChanged: (val) {
-                setSelectedRadio(val);
-              },
-            ),
-            Text(
-              "Search Set Number",
-              maxLines: 2,
-              style: TextStyle(
-                  fontSize: _radioBFontSize,
-                  fontFamily: 'Roboto.ttf',
-                  fontWeight: FontWeight.bold),
-            ),
-            Radio(
-              value: 2,
-              groupValue: selectedRadio,
-              activeColor: Colors.black,
-              onChanged: (val) {
-                setSelectedRadio(val);
-              },
-            ),
-            Text(
-              "Search Set By Train Number",
-              maxLines: 2,
-              style: TextStyle(
-                  fontSize: _radioBFontSize,
-                  fontFamily: 'Roboto.ttf',
-                  fontWeight: FontWeight.bold),
-            ),
+            Expanded(
+                flex: 1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Radio(
+                        onChanged: (val) {
+                          setSelectedRadio(val);
+                        },
+                        value: 1,
+                        groupValue: selectedRadio,
+                        activeColor: Colors.black,
+                      ),
+                    ),
+                    Expanded(
+                        flex: 4,
+                        child: Text(
+                          "Search Set Number",
+                          style: TextStyle(
+                              fontFamily: 'fonts/Roboto.ttf',
+                              fontSize: _radioButtonFontSize,
+                              fontWeight: FontWeight.bold),
+                        )),
+                  ],
+                )),
+            Expanded(
+              flex: 1,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Radio(
+                      onChanged: (val) {
+                        setSelectedRadio(val);
+                      },
+                      value: 2,
+                      groupValue: selectedRadio,
+                      activeColor: Colors.black,
+                    ),
+                  ),
+                  Expanded(
+                      flex: 4,
+                      child: Text("Search Set By Train Number",
+                          style: TextStyle(
+                              fontFamily: 'fonts/Roboto.ttf',
+                              fontSize: _radioButtonFontSize,
+                              fontWeight: FontWeight.bold))),
+                ],
+              ),
+            )
           ],
         ));
   }
