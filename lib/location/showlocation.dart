@@ -9,9 +9,8 @@ class ShowLocation extends StatefulWidget {
 
 class _ShowLocationState extends State<ShowLocation> {
   Position currentLoc;
-  String lat = "Latitude";
+  String lat;
   Coordinates coordinates;
-  String first;
 
   getUserLocation() async {
     currentLoc = await locate();
@@ -20,7 +19,6 @@ class _ShowLocationState extends State<ShowLocation> {
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
     setState(() {
-      // lat = currentLoc.latitude.toString();
       lat = address.first.addressLine;
     });
   }
@@ -30,32 +28,21 @@ class _ShowLocationState extends State<ShowLocation> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Current Location"),
       ),
       body: Center(
-        child: Column(
-          children: [
-            RaisedButton(
-              color: Colors.green,
-              onPressed: () {
-                getUserLocation();
-              },
-              child: Text("Latitude"),
-            ),
-            Text(lat),
-          ],
-        ),
+        child: Text(lat ?? 'Loading...'),
       ),
     );
   }
 }
-
-/*Future<String> showLoc() async{
-  Position position = await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-  String latitude = position.latitude.toString();
-  Fluttertoast.showToast(msg: latitude);
-  return latitude;
-}*/
